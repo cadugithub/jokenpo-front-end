@@ -1,0 +1,111 @@
+.container{
+  width: 1000px;
+  margin: auto 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+.container header {
+  width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 10px;
+}
+.container h1{
+  text-align: center;
+  font-size: 3rem;
+}
+.container header a{
+  text-decoration: none;
+  padding: 16px 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(115, 115, 194);
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s background;
+}
+.container header a:hover{
+  background-color: rgb(42, 42, 131);
+}
+.container h2{
+  font-size: 2rem;
+  text-align: center;
+
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.container header h2 span{
+  font-size: 1.5rem;
+  font-style: italic;
+}
+.container .areaJogo{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container a{
+  text-decoration: none;
+}
+.container .areaJogo .cardTelaJogo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.areaJogo .cardTelaJogo img{
+  height: 300px;
+  width: 200px;
+}
+.cardTelaJogo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.cardTelaJogo button{
+  width: 80px;
+  padding: 15px 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(115, 115, 194);
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.cardTelaJogo button:hover{
+  background-color: rgb(42, 42, 131);
+}
+
+.escolhaJogadores{
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 10px;
+
+  padding: 10px;
+}
+.escolhaJogadores div{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.escolhaJogadores p{
+  font-size: 3rem;
+  font-weight: bold;
+  color: blue;
+}
+#movimentosUltimaRodada{
+  margin-bottom: 50px;
+}
+

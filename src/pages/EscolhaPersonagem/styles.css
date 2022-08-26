@@ -1,0 +1,35 @@
+.escolhaPersonagem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.escolhaPersonagem h1{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.escolhaPersonagem a{
+    text-decoration: none;
+    color: black;
+}
+.voltarParaHome{
+    margin-bottom: 30px;
+    border: solid blue 1px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    transition: 0.5s background;
+}
+.voltarParaHome:hover{
+    background-color: blueviolet;
+    color: white;
+    font-weight: bold;
+}
+.escolhaPersonagem .container{
+    width:800px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
