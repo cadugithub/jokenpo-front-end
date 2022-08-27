@@ -229,9 +229,7 @@ useEffect(()=>{
       <div id="movimentosUltimaRodada">
         <h2>Movimentos da Última rodada</h2>
         {
-        //  ultimaRodada.length === 0 && <ItemHistorico jogadas={ultimaRodada.jogadas} vencedor={ultimaRodada.vencedor}/>  
-           console.log("Essa foi a ultima rodada "+ultimaRodada.length)
- 
+           ultimaRodada.length === 0 && <ItemHistorico jogadas={ultimaRodada.jogadas} vencedor={ultimaRodada.vencedor}/>  
         }
       </div> 
     </div>   
