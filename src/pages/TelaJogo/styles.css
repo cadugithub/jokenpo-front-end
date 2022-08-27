@@ -9,28 +9,20 @@
   padding: 30px;
 }
 .container header {
+  display: flex;
   width: 100%;
+  height: 60px;
   margin-bottom: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.container header img{
+height: 100%;
 }
 .container header h1{
   text-align: center;
   font-size: 3rem;
 }
-/* .container a{
-  height: 50px;
-  text-decoration: none;
-  padding: 16px 25px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgb(115, 115, 194);
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  transition: 0.3s background;
-} */
-/* .container a:hover{
-  background-color: rgb(42, 42, 131);
-} */
 .container h2{
   font-size: 2rem;
   text-align: center;
@@ -46,9 +38,23 @@
   width: 100%;
   display: flex;
   margin-bottom: 20px;
+  align-items: center;
   justify-content: space-between;
+  padding: 20px;
 }
-
+.container .infoPartida a{
+  text-decoration: none;
+  font-weight: bold;
+  border: solid blue 1px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  transition: 0.5s background;
+}
+.container .infoPartida a:hover{
+  background-color: blue;
+  border: black 1px solid;
+  color: white;
+}
 .container h3{
   margin-bottom: 30px;
 }

@@ -175,10 +175,10 @@ useEffect(()=>{
   return (
     <div className="container">
       <header>
-        <h1>Jokenpo</h1>
+        <h1>Jokenpo - </h1> <img src='/img/Pedra-Papel-Tesoura.png'></img>
       </header>
       <div className='infoPartida'>
-        <Link to="/escolhaPersonagem" className='voltarParaHome'>&lt;-  Voltar</Link>
+        <Link to="/escolhaPersonagem">&lt;-  Voltar</Link>
         <a href="#ultimaJogadaMaquina">Começar partida</a> 
         <Link to="/historicoRodadas">Histórico de rodadas</Link>
       </div>
