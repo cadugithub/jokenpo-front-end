@@ -175,7 +175,7 @@ useEffect(()=>{
   return (
     <div className="container">
       <header>
-        <h1>Jokenpo - </h1> <img src='/img/Pedra-Papel-Tesoura.png'></img>
+        <h1>Jokenpô - </h1> <img src='/img/Pedra-Papel-Tesoura.png'></img>
       </header>
       <div className='infoPartida'>
         <Link to="/escolhaPersonagem">&lt;-  Voltar</Link>
