@@ -112,9 +112,7 @@ useEffect(()=>{
   }
   
   if(jogadas.length===1){
-    setUltimaJogadaMaquina("Máquina está fazendo sua jogada...")
-    SetImgJogadaMaquina("/img/relogio.png")
-    setTimeout(()=>{
+   
       const jogadaMaquina = Math.floor(3 * Math.random() + 1);
       if(jogadaMaquina===1){
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Pedra"}])
@@ -135,8 +133,7 @@ useEffect(()=>{
         SetImgJogadaMaquina("/img/Tesoura.png")
         setDesabilitaBotaoes(false)
         setBackgroundBotaoDesativado("rgb(42, 42, 131)")
-      }
-    }, 1200)  
+      } 
   }
   
   if(jogadas.length===2){
