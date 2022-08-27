@@ -18,6 +18,7 @@ const [imgJogadaJogador, SetImgJogadaJogador] = useState("/img/Pedra-Papel-Tesou
 const [imgJogadaMaquina, SetImgJogadaMaquina] = useState("/img/Pedra-Papel-Tesoura.png");
 const [ultimaJogadaMaquina,setUltimaJogadaMaquina] = useState("Máquina ainda não jogou");
 const [placar, setPlacar] = useState("Ninguém jogou ainda");
+const [placarRodada, setPlacarRodada] = useState("off");
 const [desabilitaBotaoes, setDesabilitaBotaoes] = useState(false)
 const [backgroundBotaoDesativado, setBackgroundBotaoDesativado] = useState("current");
 const navegacao = useNavigate();
@@ -77,6 +78,7 @@ useEffect(()=>{
     setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Jogador: "+personagem.nome}])
     setContVitoriaJogador(0)
     setContVitoriaMaquina(0)
+    setPlacarRodada("Você venceu a partida!!! 👏👏👏")
     setHistoricoJogadas([]) 
   }else if(contVitoriaMaquina===3){
     api.post("/historicoRodadas", {"historico":{jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome}}).then(function (response) {
@@ -87,7 +89,8 @@ useEffect(()=>{
     });
     setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome}])  
     setContVitoriaJogador(0)
-    setContVitoriaMaquina(0)   
+    setContVitoriaMaquina(0)
+    setPlacarRodada("A Máquina venceu a partida!!! 😎🕹💻 ⌨️ 🖥")   
     setHistoricoJogadas([])   
   } 
 
@@ -110,48 +113,58 @@ useEffect(()=>{
         SetImgJogadaMaquina("/img/Pedra.png")
         setDesabilitaBotaoes(false)
         setBackgroundBotaoDesativado("rgb(42, 42, 131)")
-        console.log("Entrou no setTimeOut")
+        setPlacarRodada("off")
       }else if(jogadaMaquina===2){ 
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Papel"}])
         setUltimaJogadaMaquina("Papel")
         SetImgJogadaMaquina("/img/Papel.png")
         setDesabilitaBotaoes(false)
         setBackgroundBotaoDesativado("rgb(42, 42, 131)")
+        setPlacarRodada("off")
       }else{
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Tesoura"}])
         setUltimaJogadaMaquina("Tesoura")
         SetImgJogadaMaquina("/img/Tesoura.png")
         setDesabilitaBotaoes(false)
         setBackgroundBotaoDesativado("rgb(42, 42, 131)")
+        setPlacarRodada("off")
       } 
   }
   
   if(jogadas.length===2){
     if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada=="Pedra"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Pedra", maquina: "Pedra", resultado:"EMPATE!!"}])
+      setPlacar("EMPATE!!")
     }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada==="Papel"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Papel", maquina: "Papel", resultado:"EMPATE!!"}])
+      setPlacar("EMPATE!!")
     }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada==="Tesoura"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Tesoura", maquina: "Tesoura", resultado:"EMPATE!!"}])
+      setPlacar("EMPATE!!")
     }else if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada==="Papel"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Pedra", maquina: "Papel", resultado:"MÁQUINA GANHOU!!"}])
       setContVitoriaMaquina(contVitoriaMaquina + 1 )
+      setPlacar("MÁQUINA GANHOU!!")
     }else if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada==="Tesoura"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Pedra", maquina: "Tesoura", resultado:"JOGADOR GANHOU!!"}])
       setContVitoriaJogador(contVitoriaJogador  + 1 )
-      setPlacar("JOGADOR GANHOU!!")
+      setPlacar("VOCÊ GANHOU!!")
     }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada==="Pedra"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Papel", maquina: "Pedra", resultado:"JOGADOR GANHOU!!"}])
       setContVitoriaJogador(prevState => prevState +1 )
+      setPlacar("VOCÊ GANHOU!!")
     }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada==="Tesoura"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Papel", maquina: "Tesoura", resultado:"MÁQUINA GANHOU!!"}])
       setContVitoriaMaquina(prevState => prevState + 1 )
+      setPlacar("MÁQUINA GANHOU!!")
     }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada==="Pedra"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Tesoura", maquina: "Pedra", resultado:"MÁQUINA GANHOU!!"}])
       setContVitoriaMaquina(prevState => prevState + 1 )
+      setPlacar("MÁQUINA GANHOU!!")
     }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada==="Papel"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Tesoura", maquina: "Papel", resultado:"JOGADOR GANHOU!!"}])
       setContVitoriaJogador(prevState => prevState + 1 )
+      setPlacar("VOCÊ GANHOU!!")
     }
     setJogadas([])
   }
@@ -162,7 +175,7 @@ useEffect(()=>{
   return (
     <div className="container">
       <header>
-        <h1>Jankenpo</h1>
+        <h1>Jokenpo</h1>
       </header>
       <div className='infoPartida'>
         <Link to="/escolhaPersonagem" className='voltarParaHome'>&lt;-  Voltar</Link>
@@ -184,7 +197,10 @@ useEffect(()=>{
         </div>
         <div className="cardCentral">
           <div className="placar">
-            <h2>Resultado da rodada:<br/>{placar}</h2>
+            {
+              placarRodada === "off" && <h2>Resultado da rodada:<br/>{placar}</h2>
+            }
+            {placarRodada !== "off" && <h2>{placarRodada}</h2>}
           </div>
           <div className="escolhaJogadores">      
             <h2>Jogadas</h2> 
@@ -204,7 +220,7 @@ useEffect(()=>{
         </div>
       </div>
       <div id="movimentosUltimaRodada">
-        <h2>Movimentos da Última rodada</h2>
+        <h2>Movimentos da Última Partida</h2>
         {
           historicoJogadas.length > 0 
           &&
