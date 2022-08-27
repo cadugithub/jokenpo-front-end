@@ -18,11 +18,10 @@ const [imgJogadaJogador, SetImgJogadaJogador] = useState("/img/Pedra-Papel-Tesou
 const [imgJogadaMaquina, SetImgJogadaMaquina] = useState("/img/Pedra-Papel-Tesoura.png");
 const [ultimaJogadaMaquina,setUltimaJogadaMaquina] = useState("Máquina ainda não jogou");
 const [placar, setPlacar] = useState("Ninguém jogou ainda");
-const [ultimaRodada, setUltimaRodada] = useState([])
 const [desabilitaBotaoes, setDesabilitaBotaoes] = useState(false)
-const [backgroundBotaoDesativado, setBackgroundBotaoDesativado] = useState("current")
+const [backgroundBotaoDesativado, setBackgroundBotaoDesativado] = useState("current");
 const navegacao = useNavigate();
-const pegaUltimoValor = []
+
 
 const ancoraHomeCard =(dadosDaJogada)=>{
    
@@ -62,8 +61,9 @@ useEffect(()=>{
       console.error("ops! ocorreu um erro" + err);
   }); 
 
-},[id, idMaquina]) 
-console.log("Ultima rodada depois da renderização "+ultimaRodada.length)
+},[id, idMaquina])
+
+
 useEffect(()=>{
   
   if(contVitoriaJogador===3){
@@ -74,11 +74,6 @@ useEffect(()=>{
     .catch(function (error) {
       console.log(error);
     });
-    api.get("/historicoRodadas")
-        .then((response) => setUltimaRodada(response.data[response.data.length-1]))
-        .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);   
-        });
     setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Jogador: "+personagem.nome}])
     setContVitoriaJogador(0)
     setContVitoriaMaquina(0)
@@ -90,11 +85,6 @@ useEffect(()=>{
     .catch(function (error) {
       console.log(error);
     });
-    api.get("/historicoRodadas")
-        .then((response) => setUltimaRodada(response.data[response.data.length-1]))
-        .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);   
-        });
     setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome}])  
     setContVitoriaJogador(0)
     setContVitoriaMaquina(0)   
@@ -216,9 +206,11 @@ useEffect(()=>{
       <div id="movimentosUltimaRodada">
         <h2>Movimentos da Última rodada</h2>
         {
-        //  ultimaRodada.length === 0 && <ItemHistorico jogadas={ultimaRodada.jogadas} vencedor={ultimaRodada.vencedor}/>  
-           console.log("Essa foi a ultima rodada "+ultimaRodada.length)
- 
+          historicoJogadas.length > 0 
+          &&
+          historicoJogadas.map((historicoJogada)=>(
+            <p>Jogador: {historicoJogada.jogador} Máquina:{historicoJogada.maquina} resultado:{historicoJogada.resultado}</p>
+          ))        
         }
       </div> 
     </div>   
