@@ -49,6 +49,7 @@ height: 100%;
   padding: 10px 30px;
   border-radius: 10px;
   transition: 0.5s background;
+  color: blue;
 }
 .container .infoPartida a:hover{
   background-color: blue;
@@ -63,8 +64,8 @@ height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: lightblue;
   border-radius: 15px;
+  gap: 30px;
 }
 
 .container .btnjogar{
@@ -86,6 +87,7 @@ height: 100%;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
+  border: 1px solid rgb(87, 148, 228);
 }
 .areaJogo .cardTelaJogo img{
   height: 300px;
@@ -145,5 +147,42 @@ height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  height: 400px;
 }
+.cardCentral a{
+  text-decoration: none;
+  font-weight: bold;
+  border: solid blue 1px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  transition: 0.5s background;
 
+}
+.cardCentral a:hover{
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border: black solid 1px
+}
+#movimentosPartida{
+  width: 70%;
+  margin-top: 30px;
+  border: blue solid 1px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+#movimentosPartida ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#movimentosPartida ul li{
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}

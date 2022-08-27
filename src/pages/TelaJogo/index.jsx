@@ -196,6 +196,7 @@ useEffect(()=>{
           </div>
         </div>
         <div className="cardCentral">
+        <a href="#movimentosPartida">Movimentos da partida</a>
           <div className="placar">
             {
               placarRodada === "off" && <h2>Resultado da rodada:<br/>{placar}</h2>
@@ -219,15 +220,20 @@ useEffect(()=>{
       <div>
         </div>
       </div>
-      <div id="movimentosUltimaRodada">
-        <h2>Movimentos da Última Partida</h2>
+      <div id="movimentosPartida">
+        <h2>Movimentos da Partida</h2>
+        <ul>
+          {
+            historicoJogadas.length === 0 && <h2 style={{color:"gray"}}>Sem movimento</h2>
+          }
         {
           historicoJogadas.length > 0 
           &&
-          historicoJogadas.map((historicoJogada)=>(
-            <p>Jogador: {historicoJogada.jogador} Máquina:{historicoJogada.maquina} resultado:{historicoJogada.resultado}</p>
+          historicoJogadas.map((historicoJogada, index)=>(
+            <li><strong>{index+1}ª rodada</strong> - Jogador: &quot;{historicoJogada.jogador}&quot; - Máquina: &quot;{historicoJogada.maquina}&quot; - resultado: &quot;{historicoJogada.resultado}&quot;</li>
           ))        
         }
+        </ul>
       </div> 
     </div>   
   )
