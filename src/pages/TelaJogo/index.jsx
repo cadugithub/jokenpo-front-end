@@ -47,32 +47,22 @@ const ancoraHomeCard =(dadosDaJogada)=>{
   }
   
 }
-async function trazHistorico(){
-  await api.get("/historicoRodadas")
-  .then((response) => setUltimaRodada(response.data[response.data.length-1]))
-  .catch((err) => {
-      console.error("ops! ocorreu um erro" + err);
-});
-}
-async function reqGeral(){
-  await api.get("/personagens/"+id)
-        .then((response) => {
-          setPersonagem(response.data) 
-        })
-        .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);
-        });  
-        await api.get("/personagens/"+idMaquina)
-          .then((response) => setPersonagemMaquina(response.data))
-          .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);
-        }); 
-}
 useEffect(()=>{
 
-  reqGeral()
+  api.get("/personagens/"+id)
+  .then((response) => {
+    setPersonagem(response.data) 
+  })
+  .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+  });  
+  api.get("/personagens/"+idMaquina)
+    .then((response) => setPersonagemMaquina(response.data))
+    .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+  }); 
 
-},[]) 
+},[id, idMaquina]) 
 console.log("Ultima rodada depois da renderização "+ultimaRodada.length)
 useEffect(()=>{
   
@@ -113,7 +103,7 @@ useEffect(()=>{
 
   console.log("Últimas rodadas"+rodadas)
 
-},[contVitoriaJogador, contVitoriaJogador, historicoJogadas])
+},[contVitoriaJogador, historicoJogadas, rodadas, personagem.nome, contVitoriaMaquina,personagemMaquina.nome])
 
 
 useEffect(()=>{ 
@@ -152,34 +142,34 @@ useEffect(()=>{
   if(jogadas.length===2){
     if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada=="Pedra"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Pedra", maquina: "Pedra", resultado:"EMPATE!!"}])
-    }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada=="Papel"){
+    }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada==="Papel"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Papel", maquina: "Papel", resultado:"EMPATE!!"}])
-    }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada=="Tesoura"){
+    }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada==="Tesoura"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Tesoura", maquina: "Tesoura", resultado:"EMPATE!!"}])
-    }else if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada=="Papel"){
+    }else if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada==="Papel"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Pedra", maquina: "Papel", resultado:"MÁQUINA GANHOU!!"}])
       setContVitoriaMaquina(contVitoriaMaquina + 1 )
-    }else if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada=="Tesoura"){
+    }else if(jogadas[0].jogada==="Pedra" && jogadas[1].jogada==="Tesoura"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Pedra", maquina: "Tesoura", resultado:"JOGADOR GANHOU!!"}])
       setContVitoriaJogador(contVitoriaJogador  + 1 )
       setPlacar("JOGADOR GANHOU!!")
-    }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada=="Pedra"){
+    }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada==="Pedra"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Papel", maquina: "Pedra", resultado:"JOGADOR GANHOU!!"}])
       setContVitoriaJogador(prevState => prevState +1 )
-    }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada=="Tesoura"){
+    }else if(jogadas[0].jogada==="Papel" && jogadas[1].jogada==="Tesoura"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Papel", maquina: "Tesoura", resultado:"MÁQUINA GANHOU!!"}])
       setContVitoriaMaquina(prevState => prevState + 1 )
-    }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada=="Pedra"){
+    }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada==="Pedra"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Tesoura", maquina: "Pedra", resultado:"MÁQUINA GANHOU!!"}])
       setContVitoriaMaquina(prevState => prevState + 1 )
-    }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada=="Papel"){
+    }else if(jogadas[0].jogada==="Tesoura" && jogadas[1].jogada==="Papel"){
       setHistoricoJogadas(prevState => [...prevState, {jogador: "Tesoura", maquina: "Papel", resultado:"JOGADOR GANHOU!!"}])
       setContVitoriaJogador(prevState => prevState + 1 )
     }
     setJogadas([])
   }
   
-},  [jogadas, historicoJogadas])
+},  [jogadas, historicoJogadas, contVitoriaJogador, contVitoriaMaquina, id, idMaquina, navegacao])
 //===================VALORES ENTRE COMPONENTES===================
 
   return (

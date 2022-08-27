@@ -18,7 +18,6 @@ export function EscolhaPersonagem(){
         .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
         });
-        console.log(personagemMaquina)
     }, [])
     return (
         <div className="escolhaPersonagem">
