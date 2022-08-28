@@ -1,11 +1,16 @@
 .home{
-    width: 500px;
-    margin: 200px auto 0 auto;
+    width: 70%;
+    margin: 50px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 50px;
     font-size: 1.5rem;
+    padding: 20px;
+    border: blue solid 1px;
+    border-radius: 20px;
+    padding: 20px;
+    justify-content: center;
 }
 .home button{
     width: 100px;
@@ -16,6 +21,21 @@
     cursor: pointer;
     color: white;
     font-weight: bold;
+}
+.home h1{
+    text-align: center;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.home h1 img{
+    height: 100%;
 }
 .home button:hover{
     background-color: rgb(42, 42, 131);

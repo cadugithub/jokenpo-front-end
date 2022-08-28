@@ -180,7 +180,7 @@ useEffect(()=>{
           <img src={personagem.urlImg} alt="" />
           <p>{personagem.nome}</p>
           <div className="jogadas">
-              <Button onClick={() => ancoraHomeCard({idJogada:1, jogador: 1})} >Pedra</Button>
+              <Button onClick={() => ancoraHomeCard({idJogada:1, jogador: 1})} size="large" >Pedra</Button>
               <Button onClick={() => ancoraHomeCard({idJogada:2, jogador: 1})} >Papel</Button>
               <Button onClick={() => ancoraHomeCard({idJogada:3, jogador: 1})} >Tesoura</Button>
           </div>
