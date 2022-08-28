@@ -170,11 +170,10 @@ useEffect(()=>{
       </header>
       <div className='infoPartida'>
         <Link to="/escolhaPersonagem">&lt;-  Voltar</Link>
-        <a href="#ultimaJogadaMaquina">Começar partida</a> 
+        <a href="#obs">Começar partida</a> 
         <Link to="/historicoRodadas" id={"historicoRodadas"}>Histórico de rodadas<ViewListIcon/></Link>
       </div>
-      <h2 id={"ultimaJogadaMaquina"}>Última jogada da máquina: <span>{ultimaJogadaMaquina}</span></h2>
-      <Alert variant="filled" severity="info">OBS:O jogo termina com quem ganhar 3 rodadas primeiro.</Alert>
+      <Alert variant="filled" severity="info" id={"obs"}>OBS:O jogo termina com quem ganhar 3 rodadas primeiro.</Alert>
       <div className="areaJogo">
         <div className="cardTelaJogo">
           <h2>Vitórias:{contVitoriaJogador}<br/>Jogador</h2>
