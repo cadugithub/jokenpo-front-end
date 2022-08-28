@@ -14,8 +14,18 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 
-@media(max-width: 600px){
+@media(max-width: 800px){
+  .escolhaPersonagem .container{
+    width: 100%;
+  }
   .card{
-    width: 60px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .card img{
+    width: 80%;
+  }
+  .home{
+    width: 85%;
   }
 }
