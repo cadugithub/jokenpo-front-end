@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useHref, Link} from 'react-router-dom';
-import { ItemHistorico } from '../../components/ItemHistorico';
+import { useParams, useNavigate, Link} from 'react-router-dom';
 import api from '../../services/api';
+import {Button} from "@mui/material"
+import ViewListIcon from '@mui/icons-material/ViewList';
 import './styles.css'
 
 export function TelaJogo() {
-//===================VALORES ENTRE COMPONENTES=================== 
 const [jogadas, setJogadas] = useState([]) 
 const [historicoJogadas, setHistoricoJogadas] = useState([])
 const [personagem, setPersonagem]= useState([]); 
@@ -14,13 +14,11 @@ const {id, idMaquina} = useParams();
 const [contVitoriaJogador,setContVitoriaJogador] = useState(0);
 const [contVitoriaMaquina,setContVitoriaMaquina] = useState(0);
 const [rodadas,setRodadas] = useState([]);
-const [imgJogadaJogador, SetImgJogadaJogador] = useState("/img/Pedra-Papel-Tesoura.png");
-const [imgJogadaMaquina, SetImgJogadaMaquina] = useState("/img/Pedra-Papel-Tesoura.png");
+const [imgJogadaJogador, SetImgJogadaJogador] = useState("/img/Pedra-Papel-Tesoura.svg");
+const [imgJogadaMaquina, SetImgJogadaMaquina] = useState("/img/Pedra-Papel-Tesoura.svg");
 const [ultimaJogadaMaquina,setUltimaJogadaMaquina] = useState("Máquina ainda não jogou");
 const [placar, setPlacar] = useState("Ninguém jogou ainda");
 const [placarRodada, setPlacarRodada] = useState("off");
-const [desabilitaBotaoes, setDesabilitaBotaoes] = useState(false)
-const [backgroundBotaoDesativado, setBackgroundBotaoDesativado] = useState("current");
 const navegacao = useNavigate();
 
 
@@ -30,17 +28,17 @@ const ancoraHomeCard =(dadosDaJogada)=>{
     
     if(dadosDaJogada.idJogada === 1){
       setJogadas(prevState => [...prevState, {idJogador: dadosDaJogada.jogador, jogada: "Pedra"}])
-      SetImgJogadaJogador("/img/Pedra.png")
+      SetImgJogadaJogador("/img/Pedra.svg")
       setDesabilitaBotaoes(true)
       setBackgroundBotaoDesativado("gray")
     }else if(dadosDaJogada.idJogada === 2){
       setJogadas(prevState => [...prevState, {idJogador: dadosDaJogada.jogador, jogada: "Papel"}])
-      SetImgJogadaJogador("/img/Papel.png")
+      SetImgJogadaJogador("/img/Papel.svg")
       setDesabilitaBotaoes(true)
       setBackgroundBotaoDesativado("gray")
     }else{
       setJogadas(prevState => [...prevState, {idJogador: dadosDaJogada.jogador, jogada: "Tesoura"}])
-      SetImgJogadaJogador("/img/Tesoura.png")
+      SetImgJogadaJogador("/img/Tesoura.svg")
       setDesabilitaBotaoes(true)
       setBackgroundBotaoDesativado("gray")
     }
@@ -110,23 +108,17 @@ useEffect(()=>{
       if(jogadaMaquina===1){
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Pedra"}])
         setUltimaJogadaMaquina("Pedra")
-        SetImgJogadaMaquina("/img/Pedra.png")
-        setDesabilitaBotaoes(false)
-        setBackgroundBotaoDesativado("rgb(42, 42, 131)")
+        SetImgJogadaMaquina("/img/Pedra.svg")
         setPlacarRodada("off")
       }else if(jogadaMaquina===2){ 
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Papel"}])
         setUltimaJogadaMaquina("Papel")
-        SetImgJogadaMaquina("/img/Papel.png")
-        setDesabilitaBotaoes(false)
-        setBackgroundBotaoDesativado("rgb(42, 42, 131)")
+        SetImgJogadaMaquina("/img/Papel.svg")
         setPlacarRodada("off")
       }else{
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Tesoura"}])
         setUltimaJogadaMaquina("Tesoura")
-        SetImgJogadaMaquina("/img/Tesoura.png")
-        setDesabilitaBotaoes(false)
-        setBackgroundBotaoDesativado("rgb(42, 42, 131)")
+        SetImgJogadaMaquina("/img/Tesoura.svg")
         setPlacarRodada("off")
       } 
   }
@@ -170,17 +162,15 @@ useEffect(()=>{
   }
   
 },  [jogadas, historicoJogadas, contVitoriaJogador, contVitoriaMaquina, id, idMaquina, navegacao])
-//===================VALORES ENTRE COMPONENTES===================
-
   return (
     <div className="container">
       <header>
-        <h1>Jokenpô - </h1> <img src='/img/Pedra-Papel-Tesoura.png'></img>
+        <h1>Jokenpô - </h1> <img src='/img/Pedra-Papel-Tesoura.svg'></img>
       </header>
       <div className='infoPartida'>
         <Link to="/escolhaPersonagem">&lt;-  Voltar</Link>
         <a href="#ultimaJogadaMaquina">Começar partida</a> 
-        <Link to="/historicoRodadas">Histórico de rodadas</Link>
+        <Link to="/historicoRodadas" id={"historicoRodadas"}>Histórico de rodadas<ViewListIcon/></Link>
       </div>
       <h2 id={"ultimaJogadaMaquina"}>Última jogada da máquina: <span>{ultimaJogadaMaquina}</span></h2>
       <h3>OBS:O jogo termina com quem ganhar 3 rodadas primeiro.</h3>
@@ -190,9 +180,9 @@ useEffect(()=>{
           <img src={personagem.urlImg} alt="" />
           <p>{personagem.nome}</p>
           <div className="jogadas">
-              <button onClick={() => ancoraHomeCard({idJogada:1, jogador: 1})} disabled={desabilitaBotaoes} style={{background:backgroundBotaoDesativado}}>Pedra</button>
-              <button onClick={() => ancoraHomeCard({idJogada:2, jogador: 1})} disabled={desabilitaBotaoes} style={{background:backgroundBotaoDesativado}}>Papel</button>
-              <button onClick={() => ancoraHomeCard({idJogada:3, jogador: 1})}disabled={desabilitaBotaoes}style={{background:backgroundBotaoDesativado}}>Tesoura</button>
+              <Button onClick={() => ancoraHomeCard({idJogada:1, jogador: 1})} >Pedra</Button>
+              <Button onClick={() => ancoraHomeCard({idJogada:2, jogador: 1})} >Papel</Button>
+              <Button onClick={() => ancoraHomeCard({idJogada:3, jogador: 1})} >Tesoura</Button>
           </div>
         </div>
         <div className="cardCentral">
