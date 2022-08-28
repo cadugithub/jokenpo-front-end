@@ -1,12 +1,21 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+html, body{
+  width: 100%;
 }
 html{
   scroll-behavior: smooth
 }
 body{
   margin: 0 auto;
-  width: 80vw;
   font-family: 'Roboto', sans-serif;
+}
+
+@media(max-width: 600px){
+  .card{
+    width: 60px;
+  }
 }

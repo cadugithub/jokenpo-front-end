@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link} from 'react-router-dom';
 import api from '../../services/api';
 import {Button} from "@mui/material"
 import ViewListIcon from '@mui/icons-material/ViewList';
+import Alert from '@mui/material/Alert';
 import './styles.css'
 
 export function TelaJogo() {
@@ -173,7 +174,7 @@ useEffect(()=>{
         <Link to="/historicoRodadas" id={"historicoRodadas"}>Histórico de rodadas<ViewListIcon/></Link>
       </div>
       <h2 id={"ultimaJogadaMaquina"}>Última jogada da máquina: <span>{ultimaJogadaMaquina}</span></h2>
-      <h3>OBS:O jogo termina com quem ganhar 3 rodadas primeiro.</h3>
+      <Alert variant="filled" severity="info">OBS:O jogo termina com quem ganhar 3 rodadas primeiro.</Alert>
       <div className="areaJogo">
         <div className="cardTelaJogo">
           <h2>Vitórias:{contVitoriaJogador}<br/>Jogador</h2>
