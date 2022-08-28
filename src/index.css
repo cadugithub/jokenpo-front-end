@@ -17,10 +17,10 @@ body{
 @media(max-width: 800px){
   .escolhaPersonagem .container{
     width: 100%;
+    justify-content: space-between;
   }
-  .card{
-    width: 100%;
-    flex-wrap: wrap;
+  .escolhaPersonagem .container a{
+    flex-grow: 1;
   }
   .card img{
     width: 80%;
