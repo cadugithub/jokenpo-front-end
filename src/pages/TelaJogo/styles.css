@@ -71,6 +71,8 @@ height: 100%;
   align-items: center;
   border-radius: 15px;
   gap: 30px;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .container .btnjogar{
@@ -90,21 +92,18 @@ height: 100%;
   width: 300px;
   box-sizing: border-box;
   border-radius: 10px;
-  padding: 20px;
   margin-bottom: 20px;
   border: 1px solid rgb(87, 148, 228);
 }
 .areaJogo .cardTelaJogo img{
   height: 300px;
-  width: 200px;
+  width: 70%;
 }
 .cardTelaJogo {
   font-weight: bold;
   font-size: 1.2rem;
 }
 .cardTelaJogo button{
-  
- 
   border-radius: 10px;
   border: none;
   background-color: rgb(115, 115, 194);
@@ -112,6 +111,7 @@ height: 100%;
   color: white;
   font-weight: bold;
   transition: 0.3s;
+  margin-bottom: 10px;
 }
 .cardTelaJogo button:hover{
   background-color: rgb(42, 42, 131);
