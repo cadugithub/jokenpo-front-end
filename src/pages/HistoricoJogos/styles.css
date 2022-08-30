@@ -1,0 +1,29 @@
+.historico{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.historico h1{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.historico button{
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(115, 115, 194);
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+.historico button:hover{
+    background-color: rgb(42, 42, 131);
+}
+.historico a{
+    text-decoration: none;
+    color: none;
+    margin: 10px auto;
+}

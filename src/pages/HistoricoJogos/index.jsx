@@ -4,7 +4,7 @@ import { ItemHistorico } from "../../components/ItemHistorico";
 import "./styles.css"
 import { Link } from "react-router-dom";
 
-export function Historico(){
+export function HistoricoJogos(){
     const [historicoRodadas, setHistoricoRodadas] = useState([])
     useEffect(()=>{
         api.get("/historicoRodadas")
@@ -12,14 +12,15 @@ export function Historico(){
         .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
         });
+    
     }, [])
     return (
         <div className="historico">
-            <h1>Histórico de Partidas</h1> 
-            <Link to="/escolhaPersonagem"><button>Jogar de novo</button></Link>   
+            <h1>Histórico de jogos</h1> 
+            <Link to="/escolhaPersonagem"><button>Jogar de novo</button></Link>    
         {
           historicoRodadas.map((rodada, index) => (
-            <ItemHistorico key={index} jogadas={rodada.jogadas} indexRodadas={index} vencedor={rodada.vencedor}/>
+            <ItemHistorico key={index} indexRodadas={index} vencedor={rodada.vencedor} perdedor={rodada.perdedor}/>
           ))
         }
         </div>

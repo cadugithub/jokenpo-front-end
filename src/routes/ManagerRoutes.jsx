@@ -3,6 +3,7 @@ import {Home} from "../pages/Home";
 import { EscolhaPersonagem } from "../pages/EscolhaPersonagem";
 import {TelaJogo} from "../pages/TelaJogo";
 import {Historico} from "../pages/Historico"
+import { HistoricoJogos } from "../pages/HistoricoJogos";
 export function ManagerRoutes(){
     return(
         <Routes>
@@ -11,6 +12,7 @@ export function ManagerRoutes(){
             <Route path="/jogo" element={<TelaJogo/>}/>
             <Route path="/jogo/:id/:idMaquina" element={<TelaJogo/>}/>
             <Route path="/historicoRodadas" element={<Historico />}/>
+            <Route path="/historicoJogos" element={<HistoricoJogos />}/>
         </Routes>
     )
 }

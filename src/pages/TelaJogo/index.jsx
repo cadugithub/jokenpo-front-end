@@ -4,6 +4,7 @@ import api from '../../services/api';
 import {Button} from "@mui/material"
 import ViewListIcon from '@mui/icons-material/ViewList';
 import Alert from '@mui/material/Alert';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import './styles.css'
 
 export function TelaJogo() {
@@ -68,25 +69,25 @@ useEffect(()=>{
   
   if(contVitoriaJogador===3){
     
-    api.post("/historicoRodadas", {"historico":{jogadas:historicoJogadas, vencedor:"Jogador: "+personagem.nome}}).then(function (response) {
+    api.post("/historicoRodadas", {"historico":{jogadas:historicoJogadas, vencedor:"Jogador: "+personagem.nome, perdedor:"Máquina: "+personagemMaquina.nome}}).then(function (response) {
       console.log(response);
     })
     .catch(function (error) {
       console.log(error);
     });
-    setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Jogador: "+personagem.nome}])
+    setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Jogador: "+personagem.nome, perdedor:"Máquina: "+personagemMaquina.nome}])
     setContVitoriaJogador(0)
     setContVitoriaMaquina(0)
     setPlacarRodada("Você venceu a partida!!! 👏👏👏")
     setHistoricoJogadas([]) 
   }else if(contVitoriaMaquina===3){
-    api.post("/historicoRodadas", {"historico":{jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome}}).then(function (response) {
+    api.post("/historicoRodadas", {"historico":{jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome, perdedor:"Jogador: "+personagem.nome}}).then(function (response) {
       console.log(response);
     })
     .catch(function (error) {
       console.log(error);
     });
-    setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome}])  
+    setRodadas(prevState => [...prevState, {jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome, perdedor:"Jogador: "+personagem.nome}])  
     setContVitoriaJogador(0)
     setContVitoriaMaquina(0)
     setPlacarRodada("A Máquina venceu a partida!!! 😎🕹💻 ⌨️ 🖥")   
@@ -170,8 +171,9 @@ useEffect(()=>{
       </header>
       <div className='infoPartida'>
         <Link to="/escolhaPersonagem">&lt;-  Voltar</Link>
-        <a href="#obs">Começar partida</a> 
-        <Link to="/historicoRodadas" id={"historicoRodadas"}>Histórico de rodadas<ViewListIcon/></Link>
+        <a href="#obs">Começar partida <SportsEsportsIcon></SportsEsportsIcon></a> 
+        <Link to="/historicoRodadas" id={"historicoRodadas"}>Partidas<ViewListIcon/></Link>
+        <Link to="/historicoJogos" id={"historicoRodadas"}>Jogos<ViewListIcon/></Link>
       </div>
       <Alert variant="filled" severity="info" id={"obs"}>OBS:O jogo termina com quem ganhar 3 rodadas primeiro.</Alert>
       <div className="areaJogo">
@@ -180,7 +182,7 @@ useEffect(()=>{
           <img src={personagem.urlImg} alt="" />
           <p>{personagem.nome}</p>
           <div className="jogadas">
-              <Button onClick={() => ancoraHomeCard({idJogada:1, jogador: 1})} size="large" >Pedra</Button>
+              <Button onClick={() => ancoraHomeCard({idJogada:1, jogador: 1})} >Pedra</Button>
               <Button onClick={() => ancoraHomeCard({idJogada:2, jogador: 1})} >Papel</Button>
               <Button onClick={() => ancoraHomeCard({idJogada:3, jogador: 1})} >Tesoura</Button>
           </div>
