@@ -18,8 +18,7 @@ const [contVitoriaMaquina,setContVitoriaMaquina] = useState(0);
 const [rodadas,setRodadas] = useState([]);
 const [imgJogadaJogador, SetImgJogadaJogador] = useState("/img/Pedra-Papel-Tesoura.svg");
 const [imgJogadaMaquina, SetImgJogadaMaquina] = useState("/img/Pedra-Papel-Tesoura.svg");
-const [ultimaJogadaMaquina,setUltimaJogadaMaquina] = useState("Máquina ainda não jogou");
-const [placar, setPlacar] = useState("Ninguém jogou ainda");
+const [placar, setPlacar] = useState("Ninguém jogou ainda!!");
 const [placarRodada, setPlacarRodada] = useState("off");
 const navegacao = useNavigate();
 
@@ -31,18 +30,12 @@ const ancoraHomeCard =(dadosDaJogada)=>{
     if(dadosDaJogada.idJogada === 1){
       setJogadas(prevState => [...prevState, {idJogador: dadosDaJogada.jogador, jogada: "Pedra"}])
       SetImgJogadaJogador("/img/Pedra.svg")
-      setDesabilitaBotaoes(true)
-      setBackgroundBotaoDesativado("gray")
     }else if(dadosDaJogada.idJogada === 2){
       setJogadas(prevState => [...prevState, {idJogador: dadosDaJogada.jogador, jogada: "Papel"}])
       SetImgJogadaJogador("/img/Papel.svg")
-      setDesabilitaBotaoes(true)
-      setBackgroundBotaoDesativado("gray")
     }else{
       setJogadas(prevState => [...prevState, {idJogador: dadosDaJogada.jogador, jogada: "Tesoura"}])
       SetImgJogadaJogador("/img/Tesoura.svg")
-      setDesabilitaBotaoes(true)
-      setBackgroundBotaoDesativado("gray")
     }
   }
   
@@ -79,6 +72,8 @@ useEffect(()=>{
     setContVitoriaJogador(0)
     setContVitoriaMaquina(0)
     setPlacarRodada("Você venceu a partida!!! 👏👏👏")
+    setTimeout(()=>{setPlacarRodada("off")}, 1000)
+    setPlacar("Ninguém jogou ainda!!")
     setHistoricoJogadas([]) 
   }else if(contVitoriaMaquina===3){
     api.post("/historicoRodadas", {"historico":{jogadas:historicoJogadas, vencedor:"Máquina: "+personagemMaquina.nome, perdedor:"Jogador: "+personagem.nome}}).then(function (response) {
@@ -91,6 +86,8 @@ useEffect(()=>{
     setContVitoriaJogador(0)
     setContVitoriaMaquina(0)
     setPlacarRodada("A Máquina venceu a partida!!! 😎🕹💻 ⌨️ 🖥")   
+    setTimeout(()=>{setPlacarRodada("off")}, 1000)
+    setPlacar("Ninguém jogou ainda!!")
     setHistoricoJogadas([])   
   } 
 
@@ -109,17 +106,14 @@ useEffect(()=>{
       const jogadaMaquina = Math.floor(3 * Math.random() + 1);
       if(jogadaMaquina===1){
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Pedra"}])
-        setUltimaJogadaMaquina("Pedra")
         SetImgJogadaMaquina("/img/Pedra.svg")
         setPlacarRodada("off")
       }else if(jogadaMaquina===2){ 
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Papel"}])
-        setUltimaJogadaMaquina("Papel")
         SetImgJogadaMaquina("/img/Papel.svg")
         setPlacarRodada("off")
       }else{
         setJogadas(prevState => [...prevState, {idJogador: 2, jogada: "Tesoura"}])
-        setUltimaJogadaMaquina("Tesoura")
         SetImgJogadaMaquina("/img/Tesoura.svg")
         setPlacarRodada("off")
       } 
